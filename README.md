@@ -1,6 +1,6 @@
 # Unoserver Docker Image
 
-Docker image for unoserver
+Docker image for unoserver. This image is designed to be used a server as a second container accompanying another Python contain which connects to it using [UnoClient](https://github.com/unoconv/unoserver/blob/master/src/unoserver/client.py).
 
 ## The environment
 
@@ -28,17 +28,11 @@ This Docker image uses Alpine Linux as base image and provides:
 
 Just run:
 
-    docker run -it -v <your directory>:/data/ ghcr.io/unoconv/unoserver-docker
+    docker run -v <your directory>:/tmp/ ghcr.io/unoconv/unoserver-docker
 
-or to convert directly:
+Docker maps your directory with /tmp directory in the container.
 
-    docker run -it -v <your directory>:/data/ ghcr.io/unoconv/unoserver-docker unoconvert /data/document.docx /data/document.pdf
-
-Docker maps your directory with /data directory in the container.
-
-You might need to add the option `:z` or `:Z` like `<your directory>:/data/:z` or `<your directory>:/data/:Z` if you are using SELinux. See [Docker docs](https://docs.docker.com/storage/bind-mounts/#configure-the-selinux-label) or [Podman docs](https://docs.podman.io/en/latest/markdown/podman-run.1.html#volume-v-source-volume-host-dir-container-dir-options).
-
-After you start the container, you can use [unoconvert](https://github.com/unoconv/unoserver#unoconvert) command to convert documents using LibreOffice.
+You might need to add the option `:z` or `:Z` like `<your directory>:/tmp/:z` or `<your directory>:/tmp/:Z` if you are using SELinux. See [Docker docs](https://docs.docker.com/storage/bind-mounts/#configure-the-selinux-label) or [Podman docs](https://docs.podman.io/en/latest/markdown/podman-run.1.html#volume-v-source-volume-host-dir-container-dir-options).
 
 
 ## How to contribute / do it yourself?
